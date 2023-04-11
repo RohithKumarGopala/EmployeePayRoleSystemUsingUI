@@ -6,6 +6,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./New_PayRole_Form.CSS">
     <title>Employee payroll form</title>
+    <script src="./Employee_PayRole.JS"></script>
 </head>
 <body>
     <!-- UC 1 -->
@@ -25,6 +26,7 @@
             <div class="row-content">
               <label class="label text" for="name">Name</label>
               <input class="input" type="text" id="name" name="name" placeholder="your name.." required>
+              <error-output class="name-error" for="name"></error-output>
             </div>
             <!-- UC 3 -->
             <div class="row-content">
@@ -81,14 +83,16 @@
 
             <!-- UC 5 -->
             <div class="row-content">
-              <label class="label text" for="startDate">Start Date:</label>
+              <label class="label text" for="startDate" >Start Date</label>
+              <input type="date" name="startDate" value="2020-02-01" min="2020-01-01" max="2020-03-31">
             <div>
             <select id="day" name="Day">
+              
               <option value="1">1</option>
               <option value="2">2</option>
               <option value="3">3</option>
               <option value="4">4</option>
-              <option value="5">5</option>
+              <option value="5">5</option> 
               <option value="6">6</option>
               <option value="7">7</option>
               <option value="8">8</option>
@@ -131,13 +135,13 @@
               <option value="Dec">December</option>
             </select>
             <select id="year" name="Year">
-                <option value="2022">2022</option>
-                <option value="2021">2021</option>
-                <option value="2020">2020</option>
-                <option value="2019">2019</option>
-                <option value="2018">2018</option>
-                <option value="2017">2017</option>
-                <option value="2016">2016</option>
+              <option value="2022">2022</option>
+              <option value="2021">2021</option>
+              <option value="2020">2020</option>
+              <option value="2019">2019</option>
+              <option value="2018">2018</option>
+              <option value="2017">2017</option>
+              <option value="2016">2016</option>
             </select>
             </div>
           </div>
@@ -156,5 +160,21 @@
         </form>
         </div>
       </header>
-</body>
+      <script>
+        const salary=document.querySelector('#salary');
+        const output = document.querySelector('.salary-output');
+        salary.addEventListener('input',function(){
+          output.innerHTML = salary.value;
+          });
+          
+          const name = document.querySelector('#name');
+          const nameerror = document.querySelector('.name-error');
+          name.addEventListener('input',function(){
+            let nameRegex = RegExp('^[A-Z]{1}[a-z]{2,}$');
+            if(nameRegex.test(name.value))
+            nameerror.textContent ="";
+            else nameerror.textContent ="Name is Incorrect";
+          });
+        </script>
+    </body>
 </html>
